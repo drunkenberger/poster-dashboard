@@ -34,7 +34,9 @@
     "title": "Connected Accounts",
     "filterByPlatform": "Filter by platform",
     "noAccounts": "No connected accounts",
-    "connectInfo": "Connect your accounts from the Post Bridge panel"
+    "connectInfo": "Connect your accounts from the Post Bridge panel",
+    "connect": "Connect account",
+    "refresh": "Refresh"
   },
   "posts": {
     "title": "Posts",
@@ -48,8 +50,14 @@
     "saveDraft": "Save draft",
     "platformOptions": "Platform options",
     "accountOverrides": "Customize per account",
+    "whenPublish": "When to publish",
+    "scheduleTimezone": "Your browser's local time",
+    "scheduleSuccess": "Post scheduled successfully!",
+    "draftSuccess": "Draft saved!",
     "publishSuccess": "Post published successfully!",
     "publishError": "Failed to publish post",
+    "noPosts": "No posts",
+    "noPostsDesc": "Create your first post from the 'Create Post' button",
     "status": {
       "draft": "Draft",
       "scheduled": "Scheduled",

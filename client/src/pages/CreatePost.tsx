@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Send, Loader2 } from 'lucide-react';
+import { Send, Loader2, Save } from 'lucide-react';
 import { postsService } from '../services/posts.ts';
 import { useMediaUpload } from '../hooks/useMediaUpload.ts';
 import MediaUploader from '../components/media/MediaUploader.tsx';
 import AccountSelector from '../components/accounts/AccountSelector.tsx';
+import SchedulePicker from '../components/posts/SchedulePicker.tsx';
 import { toast } from '../components/ui/Toast.tsx';
 
 export default function CreatePost() {
@@ -13,27 +14,37 @@ export default function CreatePost() {
   const navigate = useNavigate();
   const [caption, setCaption] = useState('');
   const [selectedAccounts, setSelectedAccounts] = useState<number[]>([]);
-  const [publishing, setPublishing] = useState(false);
+  const [scheduledAt, setScheduledAt] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const { files, upload, remove, mediaIds } = useMediaUpload();
 
-  const canPublish = caption.trim().length > 0 && selectedAccounts.length > 0 && !publishing;
+  const canSubmit = caption.trim().length > 0 && selectedAccounts.length > 0 && !submitting;
 
-  const handlePublish = async () => {
-    if (!canPublish) return;
-    setPublishing(true);
+  const handleSubmit = async (asDraft = false) => {
+    if (!canSubmit && !asDraft) return;
+    if (asDraft && caption.trim().length === 0) return;
+    setSubmitting(true);
 
     try {
       await postsService.create({
         caption: caption.trim(),
         social_accounts: selectedAccounts,
         media: mediaIds.length > 0 ? mediaIds : undefined,
+        scheduled_at: asDraft ? undefined : (scheduledAt ?? undefined),
+        is_draft: asDraft || undefined,
       });
-      toast(t('posts.publishSuccess') || 'Post published!', 'success');
+
+      const msg = asDraft
+        ? t('posts.draftSuccess')
+        : scheduledAt
+          ? t('posts.scheduleSuccess')
+          : t('posts.publishSuccess');
+      toast(msg, 'success');
       navigate('/posts');
     } catch {
-      toast(t('posts.publishError') || 'Failed to publish', 'error');
+      toast(t('posts.publishError'), 'error');
     } finally {
-      setPublishing(false);
+      setSubmitting(false);
     }
   };
 
@@ -45,21 +56,27 @@ export default function CreatePost() {
         <CaptionEditor caption={caption} onChange={setCaption} />
         <MediaUploader files={files} onUpload={upload} onRemove={remove} />
         <AccountSelector selected={selectedAccounts} onChange={setSelectedAccounts} />
+        <SchedulePicker scheduledAt={scheduledAt} onChange={setScheduledAt} />
 
         <div className="flex items-center justify-between pt-4 border-t border-border">
-          <div className="text-sm text-muted-foreground">
-            {selectedAccounts.length} {t('posts.selectAccounts').toLowerCase()}
-            {mediaIds.length > 0 && ` · ${mediaIds.length} media`}
-          </div>
+          <button
+            id="post-draft-btn-013"
+            onClick={() => handleSubmit(true)}
+            disabled={submitting || caption.trim().length === 0}
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-md border border-border hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Save size={16} />
+            {t('posts.saveDraft')}
+          </button>
 
           <button
             id="post-publish-btn-008"
-            onClick={handlePublish}
-            disabled={!canPublish}
+            onClick={() => handleSubmit(false)}
+            disabled={!canSubmit}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {publishing ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-            {t('posts.publishNow')}
+            {submitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+            {scheduledAt ? t('posts.schedule') : t('posts.publishNow')}
           </button>
         </div>
       </div>
@@ -72,7 +89,7 @@ function CaptionEditor({ caption, onChange }: { caption: string; onChange: (v: s
 
   return (
     <div className="space-y-2">
-      <label htmlFor="caption-input" className="text-sm font-medium text-foreground">
+      <label htmlFor="caption-input-009" className="text-sm font-medium text-foreground">
         {t('posts.caption')}
       </label>
       <textarea

@@ -34,7 +34,9 @@
     "title": "Cuentas Conectadas",
     "filterByPlatform": "Filtrar por plataforma",
     "noAccounts": "No hay cuentas conectadas",
-    "connectInfo": "Conecta tus cuentas desde el panel de Post Bridge"
+    "connectInfo": "Conecta tus cuentas desde el panel de Post Bridge",
+    "connect": "Conectar cuenta",
+    "refresh": "Actualizar"
   },
   "posts": {
     "title": "Posts",
@@ -48,8 +50,14 @@
     "saveDraft": "Guardar borrador",
     "platformOptions": "Opciones por plataforma",
     "accountOverrides": "Personalizar por cuenta",
+    "whenPublish": "Cuando publicar",
+    "scheduleTimezone": "Hora local de tu navegador",
+    "scheduleSuccess": "Post programado exitosamente!",
+    "draftSuccess": "Borrador guardado!",
     "publishSuccess": "Post publicado exitosamente!",
     "publishError": "Error al publicar el post",
+    "noPosts": "No hay posts",
+    "noPostsDesc": "Crea tu primer post desde el boton 'Crear Post'",
     "status": {
       "draft": "Borrador",
       "scheduled": "Programado",
