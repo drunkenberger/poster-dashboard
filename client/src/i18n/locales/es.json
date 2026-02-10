@@ -1,0 +1,71 @@
+{
+  "common": {
+    "appName": "Poster Tool",
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "noResults": "Sin resultados"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "createPost": "Crear Post",
+    "posts": "Posts",
+    "accounts": "Cuentas",
+    "media": "Media",
+    "settings": "Ajustes"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "activeAccounts": "Cuentas activas",
+    "postsToday": "Posts hoy",
+    "scheduled": "Programados",
+    "failed": "Fallidos",
+    "recentPosts": "Posts recientes",
+    "quickActions": "Acciones rapidas"
+  },
+  "accounts": {
+    "title": "Cuentas Conectadas",
+    "filterByPlatform": "Filtrar por plataforma",
+    "noAccounts": "No hay cuentas conectadas",
+    "connectInfo": "Conecta tus cuentas desde el panel de Post Bridge"
+  },
+  "posts": {
+    "title": "Posts",
+    "newPost": "Nuevo Post",
+    "caption": "Caption",
+    "captionPlaceholder": "Escribe tu caption aqui...",
+    "selectAccounts": "Seleccionar cuentas",
+    "uploadMedia": "Subir media",
+    "publishNow": "Publicar ahora",
+    "schedule": "Programar",
+    "saveDraft": "Guardar borrador",
+    "platformOptions": "Opciones por plataforma",
+    "accountOverrides": "Personalizar por cuenta",
+    "status": {
+      "draft": "Borrador",
+      "scheduled": "Programado",
+      "processing": "Procesando",
+      "published": "Publicado",
+      "failed": "Fallido"
+    }
+  },
+  "media": {
+    "title": "Galeria de Media",
+    "upload": "Subir archivo",
+    "dragDrop": "Arrastra archivos aqui o haz click para seleccionar",
+    "supported": "PNG, JPEG, MP4, MOV",
+    "expiresIn": "Expira en"
+  },
+  "results": {
+    "title": "Resultados",
+    "viewOnPlatform": "Ver en plataforma",
+    "errorDetails": "Detalles del error"
+  }
+}

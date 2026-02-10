@@ -1,0 +1,71 @@
+{
+  "common": {
+    "appName": "Poster Tool",
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "noResults": "No results"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "createPost": "Create Post",
+    "posts": "Posts",
+    "accounts": "Accounts",
+    "media": "Media",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "activeAccounts": "Active accounts",
+    "postsToday": "Posts today",
+    "scheduled": "Scheduled",
+    "failed": "Failed",
+    "recentPosts": "Recent posts",
+    "quickActions": "Quick actions"
+  },
+  "accounts": {
+    "title": "Connected Accounts",
+    "filterByPlatform": "Filter by platform",
+    "noAccounts": "No connected accounts",
+    "connectInfo": "Connect your accounts from the Post Bridge panel"
+  },
+  "posts": {
+    "title": "Posts",
+    "newPost": "New Post",
+    "caption": "Caption",
+    "captionPlaceholder": "Write your caption here...",
+    "selectAccounts": "Select accounts",
+    "uploadMedia": "Upload media",
+    "publishNow": "Publish now",
+    "schedule": "Schedule",
+    "saveDraft": "Save draft",
+    "platformOptions": "Platform options",
+    "accountOverrides": "Customize per account",
+    "status": {
+      "draft": "Draft",
+      "scheduled": "Scheduled",
+      "processing": "Processing",
+      "published": "Published",
+      "failed": "Failed"
+    }
+  },
+  "media": {
+    "title": "Media Gallery",
+    "upload": "Upload file",
+    "dragDrop": "Drag files here or click to select",
+    "supported": "PNG, JPEG, MP4, MOV",
+    "expiresIn": "Expires in"
+  },
+  "results": {
+    "title": "Results",
+    "viewOnPlatform": "View on platform",
+    "errorDetails": "Error details"
+  }
+}
