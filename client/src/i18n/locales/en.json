@@ -48,6 +48,8 @@
     "saveDraft": "Save draft",
     "platformOptions": "Platform options",
     "accountOverrides": "Customize per account",
+    "publishSuccess": "Post published successfully!",
+    "publishError": "Failed to publish post",
     "status": {
       "draft": "Draft",
       "scheduled": "Scheduled",

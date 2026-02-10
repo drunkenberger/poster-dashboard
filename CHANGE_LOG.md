@@ -8,3 +8,4 @@
 [2026-02-08] Renombrar app de PostBridge a Poster Tool | Archivos: package.json, i18n/locales/*.json, PRD.md, PLAN.md, index.html | Estado: Exitoso
 [2026-02-08] Pagina de Cuentas con datos reales de la API, filtro por plataforma, componentes UI reutilizables | Archivos: pages/Accounts.tsx, components/accounts/*.tsx, components/ui/*.tsx | Estado: Exitoso
 [2026-02-08] Fix carga de .env en monorepo (dotenv path relativo desde server) | Archivos: server/src/index.ts | Estado: Exitoso
+[2026-02-10] Fase 3: Pagina CreatePost con editor de caption, MediaUploader drag&drop, AccountSelector, y flujo de publicacion | Archivos: pages/CreatePost.tsx, components/media/MediaUploader.tsx, components/accounts/AccountSelector.tsx, hooks/useMediaUpload.ts, components/ui/Toast.tsx, App.tsx | Estado: Exitoso

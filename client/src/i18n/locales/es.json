@@ -48,6 +48,8 @@
     "saveDraft": "Guardar borrador",
     "platformOptions": "Opciones por plataforma",
     "accountOverrides": "Personalizar por cuenta",
+    "publishSuccess": "Post publicado exitosamente!",
+    "publishError": "Error al publicar el post",
     "status": {
       "draft": "Borrador",
       "scheduled": "Programado",

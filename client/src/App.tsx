@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppLayout from './components/layout/AppLayout.tsx'
+import ToastContainer from './components/ui/Toast.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import CreatePost from './pages/CreatePost.tsx'
 import Posts from './pages/Posts.tsx'
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   )
 }
