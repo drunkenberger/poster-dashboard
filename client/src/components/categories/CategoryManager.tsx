@@ -79,7 +79,7 @@ export default function CategoryManager({ open, onClose }: CategoryManagerProps)
                 className={`w-7 h-7 rounded-full transition-transform ${
                   color === c ? 'ring-2 ring-offset-2 ring-offset-card scale-110' : ''
                 }`}
-                style={{ backgroundColor: c, ringColor: c }}
+                style={{ backgroundColor: c, '--tw-ring-color': c } as React.CSSProperties}
               />
             ))}
           </div>
