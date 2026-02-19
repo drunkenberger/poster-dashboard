@@ -1,10 +1,12 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, RefreshCw } from 'lucide-react';
+import { ExternalLink, RefreshCw, Tags } from 'lucide-react';
 import { useAccountsStore } from '../stores/accountsStore.ts';
 import type { Platform } from '../../../shared/types/index.ts';
 import AccountCard from '../components/accounts/AccountCard.tsx';
 import PlatformFilter from '../components/accounts/PlatformFilter.tsx';
+import CategoryFilter from '../components/categories/CategoryFilter.tsx';
+import CategoryManager from '../components/categories/CategoryManager.tsx';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton.tsx';
 import EmptyState from '../components/ui/EmptyState.tsx';
 import ErrorMessage from '../components/ui/ErrorMessage.tsx';
@@ -13,8 +15,12 @@ const POSTBRIDGE_DASHBOARD = 'https://post-bridge.com/dashboard';
 
 export default function Accounts() {
   const { t } = useTranslation();
-  const { accounts, loading, error, platformFilter, fetchAccounts, setPlatformFilter, filteredAccounts } =
-    useAccountsStore();
+  const {
+    accounts, loading, error, platformFilter, categoryFilter,
+    fetchAccounts, setPlatformFilter, setCategoryFilter, filteredAccounts,
+  } = useAccountsStore();
+
+  const [managerOpen, setManagerOpen] = useState(false);
 
   useEffect(() => {
     fetchAccounts();
@@ -32,6 +38,14 @@ export default function Accounts() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h2 className="text-2xl font-bold">{t('accounts.title')}</h2>
         <div className="flex items-center gap-2">
+          <button
+            id="accounts-manage-cats-028"
+            onClick={() => setManagerOpen(true)}
+            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-border hover:bg-muted transition-colors"
+          >
+            <Tags size={14} />
+            {t('categories.manage')}
+          </button>
           <button
             id="accounts-refresh-btn-010"
             onClick={fetchAccounts}
@@ -55,12 +69,13 @@ export default function Accounts() {
       </div>
 
       {accounts.length > 0 && (
-        <div className="mb-6">
+        <div className="mb-6 space-y-3">
           <PlatformFilter
             selected={platformFilter}
             onChange={setPlatformFilter}
             availablePlatforms={availablePlatforms}
           />
+          <CategoryFilter selected={categoryFilter} onChange={setCategoryFilter} />
         </div>
       )}
 
@@ -79,6 +94,8 @@ export default function Accounts() {
           ))}
         </div>
       )}
+
+      <CategoryManager open={managerOpen} onClose={() => setManagerOpen(false)} />
     </div>
   );
 }

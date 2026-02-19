@@ -1,7 +1,46 @@
+# Dependencies
 node_modules/
+
+# Build
 dist/
+
+# Environment variables
 .env
 .env.local
 .env.txt
+.env.production
+
+# Credentials & tokens
+credentials.json
+token.pickle
+*.pickle
+
+# Temp files (ffmpeg processing)
+server/temp/
+
+# Logs
 *.log
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE / editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Screenshots (dev only)
+*.png
+*.jpg
+*.jpeg
+
+# Scripts (local utilities)
+scripts/

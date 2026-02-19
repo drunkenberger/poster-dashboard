@@ -1,24 +1,65 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Send, Loader2, Save } from 'lucide-react';
+import { Send, Loader2, Save, Film, X } from 'lucide-react';
 import { postsService } from '../services/posts.ts';
 import { useMediaUpload } from '../hooks/useMediaUpload.ts';
+import { useAccountsStore } from '../stores/accountsStore.ts';
 import MediaUploader from '../components/media/MediaUploader.tsx';
 import AccountSelector from '../components/accounts/AccountSelector.tsx';
 import SchedulePicker from '../components/posts/SchedulePicker.tsx';
+import PlatformOptions from '../components/posts/PlatformOptions.tsx';
+import AccountOverrides from '../components/posts/AccountOverrides.tsx';
 import { toast } from '../components/ui/Toast.tsx';
+import type { PlatformConfigurations, AccountConfiguration } from '../../../shared/types/index.ts';
 
 export default function CreatePost() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { accounts } = useAccountsStore();
   const [caption, setCaption] = useState('');
   const [selectedAccounts, setSelectedAccounts] = useState<number[]>([]);
   const [scheduledAt, setScheduledAt] = useState<string | null>(null);
+  const [platformConfig, setPlatformConfig] = useState<PlatformConfigurations>({});
+  const [accountOverrides, setAccountOverrides] = useState<AccountConfiguration[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [driveMediaIds, setDriveMediaIds] = useState<string[]>([]);
   const { files, upload, remove, mediaIds } = useMediaUpload();
 
+  useEffect(() => {
+    const mediaParam = searchParams.get('media');
+    if (mediaParam) setDriveMediaIds(mediaParam.split(','));
+    const es = searchParams.get('captionEs') ?? '';
+    const en = searchParams.get('captionEn') ?? '';
+    const title = searchParams.get('title') ?? '';
+    if (es || en) setCaption([es, en].filter(Boolean).join('\n\n---\n\n'));
+    if (es || en || title) {
+      setPlatformConfig({
+        instagram: { caption: es || undefined, placement: 'reels' },
+        tiktok: { caption: en || undefined, title: title || undefined },
+      });
+    }
+  }, [searchParams]);
+
+  const allMediaIds = [...driveMediaIds, ...mediaIds];
   const canSubmit = caption.trim().length > 0 && selectedAccounts.length > 0 && !submitting;
+
+  const buildPlatformConfig = (): PlatformConfigurations | undefined => {
+    const cleaned: PlatformConfigurations = {};
+    if (platformConfig.instagram) {
+      const ig = { ...platformConfig.instagram };
+      if (!ig.caption) delete ig.caption;
+      if (Object.keys(ig).length > 0) cleaned.instagram = ig;
+    }
+    if (platformConfig.tiktok) {
+      const tt = { ...platformConfig.tiktok };
+      if (!tt.caption) delete tt.caption;
+      if (!tt.title) delete tt.title;
+      if (Object.keys(tt).length > 0) cleaned.tiktok = tt;
+    }
+    return Object.keys(cleaned).length > 0 ? cleaned : undefined;
+  };
 
   const handleSubmit = async (asDraft = false) => {
     if (!canSubmit && !asDraft) return;
@@ -29,9 +70,11 @@ export default function CreatePost() {
       await postsService.create({
         caption: caption.trim(),
         social_accounts: selectedAccounts,
-        media: mediaIds.length > 0 ? mediaIds : undefined,
+        media: allMediaIds.length > 0 ? allMediaIds : undefined,
         scheduled_at: asDraft ? undefined : (scheduledAt ?? undefined),
         is_draft: asDraft || undefined,
+        platform_configurations: buildPlatformConfig(),
+        account_configurations: accountOverrides.length > 0 ? accountOverrides : undefined,
       });
 
       const msg = asDraft
@@ -54,8 +97,34 @@ export default function CreatePost() {
 
       <div className="space-y-6">
         <CaptionEditor caption={caption} onChange={setCaption} />
+
+        {driveMediaIds.length > 0 && (
+          <div className="flex items-center gap-2 p-3 rounded-lg bg-primary/10 border border-primary/20">
+            <Film size={16} className="text-primary" />
+            <span className="text-sm text-foreground flex-1">{t('drive.mediaAttached')}</span>
+            <button
+              onClick={() => setDriveMediaIds([])}
+              className="p-1 rounded hover:bg-muted text-muted-foreground"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
+
         <MediaUploader files={files} onUpload={upload} onRemove={remove} />
         <AccountSelector selected={selectedAccounts} onChange={setSelectedAccounts} />
+        <PlatformOptions
+          accounts={accounts}
+          selectedAccountIds={selectedAccounts}
+          config={platformConfig}
+          onChange={setPlatformConfig}
+        />
+        <AccountOverrides
+          accounts={accounts}
+          selectedAccountIds={selectedAccounts}
+          overrides={accountOverrides}
+          onChange={setAccountOverrides}
+        />
         <SchedulePicker scheduledAt={scheduledAt} onChange={setScheduledAt} />
 
         <div className="flex items-center justify-between pt-4 border-t border-border">

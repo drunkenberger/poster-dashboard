@@ -19,7 +19,10 @@
     "posts": "Posts",
     "accounts": "Cuentas",
     "media": "Media",
-    "settings": "Ajustes"
+    "drive": "Google Drive",
+    "settings": "Ajustes",
+    "bulkCreate": "Bulk Post",
+    "shorts": "Shorts Cutter"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -58,6 +61,13 @@
     "publishError": "Error al publicar el post",
     "noPosts": "No hay posts",
     "noPostsDesc": "Crea tu primer post desde el boton 'Crear Post'",
+    "accountOverridesDesc": "Personaliza el caption para cuentas individuales (opcional)",
+    "customized": "Personalizado",
+    "overrideCaptionPlaceholder": "Caption personalizado para esta cuenta...",
+    "accounts": "cuentas",
+    "detailError": "Error al cargar el detalle del post",
+    "deleteSuccess": "Post eliminado exitosamente",
+    "deleteError": "Error al eliminar el post",
     "status": {
       "draft": "Borrador",
       "scheduled": "Programado",
@@ -73,9 +83,101 @@
     "supported": "PNG, JPEG, MP4, MOV",
     "expiresIn": "Expira en"
   },
+  "platform": {
+    "ig": {
+      "placement": "Ubicacion",
+      "feed": "Feed",
+      "reels": "Reels",
+      "trialReel": "Trial Reel",
+      "trialReelDesc": "Publica como reel de prueba con alcance limitado",
+      "captionOverride": "Caption para Instagram",
+      "captionPlaceholder": "Dejar vacio para usar el caption general..."
+    },
+    "tt": {
+      "title": "Titulo del TikTok",
+      "titlePlaceholder": "Titulo del video...",
+      "aigc": "Contenido generado por IA",
+      "aigcDesc": "Marca este video como contenido generado por inteligencia artificial",
+      "draft": "Guardar como borrador en TikTok",
+      "draftDesc": "El video se guardara como borrador en TikTok, no se publicara directamente",
+      "captionOverride": "Caption para TikTok",
+      "captionPlaceholder": "Dejar vacio para usar el caption general..."
+    }
+  },
+  "drive": {
+    "title": "Google Drive",
+    "noCategories": "No se encontraron categorias",
+    "noVideos": "No hay videos en esta carpeta",
+    "useVideo": "Usar este video",
+    "uploading": "Subiendo...",
+    "uploaded": "Subido",
+    "mediaAttached": "Video de Drive adjunto",
+    "addFolder": "Agregar carpeta",
+    "folderIdPlaceholder": "ID o URL de carpeta de Drive...",
+    "addFolderError": "Carpeta no valida o sin acceso"
+  },
+  "categories": {
+    "manage": "Categorias",
+    "namePlaceholder": "Nombre de la categoria...",
+    "empty": "No hay categorias. Crea una para agrupar tus cuentas.",
+    "noCategoriesYet": "No hay categorias aun. Crealas desde la pagina de Cuentas.",
+    "quickSelect": "Seleccion rapida por categoria"
+  },
+  "bulk": {
+    "title": "Crear Posts en Lote",
+    "stepVideos": "Videos",
+    "stepConfig": "Configurar",
+    "stepSchedule": "Programar",
+    "stepReview": "Revisar",
+    "tabDrive": "Google Drive",
+    "tabUpload": "Subir archivos",
+    "uploadSelected": "Subir {{count}} seleccionados",
+    "accountMode_shared": "Mismas cuentas para todo",
+    "accountMode_individual": "Individual por post",
+    "platformConfig": "Configuracion de plataforma",
+    "postsList": "Lista de posts",
+    "schedule_now": "Publicar ahora",
+    "schedule_interval": "Intervalo fijo",
+    "schedule_manual": "Manual por post",
+    "startTime": "Fecha/hora inicio",
+    "interval": "Intervalo",
+    "preview": "Vista previa de fechas",
+    "publishImmediately": "Todos los posts se publicaran inmediatamente",
+    "video": "Video",
+    "status": "Estado",
+    "creating": "Creando...",
+    "createAll": "Crear {{count}} posts",
+    "resultSummary": "{{success}} exitosos, {{error}} fallidos de {{total}} posts",
+    "viewPosts": "Ver posts",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "videosSelected": "videos seleccionados"
+  },
+  "shorts": {
+    "title": "Shorts Cutter",
+    "tabUpload": "Subir video",
+    "tabDrive": "Google Drive",
+    "dragOrClick": "Arrastra un video aqui o haz click para seleccionar",
+    "analyzing": "Analizando video...",
+    "analyzingDesc": "Subiendo y detectando escenas del video",
+    "cuttingAuto": "Cortando clips...",
+    "cuttingAutoDesc": "Dividiendo el video en clips y subiendo a Media",
+    "doneMessage": "{{count}} clips generados y guardados en Media",
+    "goToBulk": "Crear {{count}} posts",
+    "postSingle": "Publicar",
+    "processAnother": "Procesar otro video",
+    "uploadError": "Error al subir el video",
+    "cutError": "Error al cortar los clips",
+    "tryAgain": "Intentar de nuevo",
+    "savedClips": "Clips guardados",
+    "clearAll": "Borrar todo"
+  },
   "results": {
     "title": "Resultados",
     "viewOnPlatform": "Ver en plataforma",
-    "errorDetails": "Detalles del error"
+    "errorDetails": "Detalles del error",
+    "success": "Exitoso",
+    "failed": "Fallido",
+    "noResults": "No hay resultados disponibles aun"
   }
 }

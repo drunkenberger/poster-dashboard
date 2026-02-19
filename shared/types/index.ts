@@ -120,6 +120,75 @@ export interface CreateUploadUrlResponse {
   name: string;
 }
 
+export interface DriveCategory {
+  id: string;
+  name: string;
+  createdTime?: string;
+}
+
+export interface DriveVideo {
+  id: string;
+  name: string;
+  mimeType: string;
+  size: number;
+  thumbnailLink?: string;
+  createdTime?: string;
+  captionEs?: string;
+  captionEn?: string;
+  title?: string;
+}
+
+export interface AccountCategory {
+  id: string;
+  name: string;
+  color: string;
+  accountIds: number[];
+}
+
+export interface BulkPostItem {
+  id: string;
+  mediaId: string;
+  name: string;
+  thumbnail?: string;
+  caption: string;
+  captionEs?: string;
+  captionEn?: string;
+  title?: string;
+  accounts?: number[];
+  scheduledAt?: string;
+}
+
+export interface VideoScene {
+  start: number;
+  end: number;
+}
+
+export interface VideoAnalysis {
+  videoId: string;
+  filename: string;
+  duration: number;
+  width: number;
+  height: number;
+  scenes: VideoScene[];
+}
+
+export interface VideoClip {
+  id: string;
+  start: number;
+  end: number;
+}
+
+export interface CutClipsRequest {
+  videoId: string;
+  clips: VideoClip[];
+}
+
+export interface CutClipResult {
+  clipId: string;
+  mediaId: string;
+  name: string;
+}
+
 export interface PostResult {
   id: string;
   post_id: string;

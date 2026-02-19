@@ -19,7 +19,10 @@
     "posts": "Posts",
     "accounts": "Accounts",
     "media": "Media",
-    "settings": "Settings"
+    "drive": "Google Drive",
+    "settings": "Settings",
+    "bulkCreate": "Bulk Post",
+    "shorts": "Shorts Cutter"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -58,6 +61,13 @@
     "publishError": "Failed to publish post",
     "noPosts": "No posts",
     "noPostsDesc": "Create your first post from the 'Create Post' button",
+    "accountOverridesDesc": "Customize the caption for individual accounts (optional)",
+    "customized": "Customized",
+    "overrideCaptionPlaceholder": "Custom caption for this account...",
+    "accounts": "accounts",
+    "detailError": "Failed to load post details",
+    "deleteSuccess": "Post deleted successfully",
+    "deleteError": "Failed to delete post",
     "status": {
       "draft": "Draft",
       "scheduled": "Scheduled",
@@ -73,9 +83,101 @@
     "supported": "PNG, JPEG, MP4, MOV",
     "expiresIn": "Expires in"
   },
+  "platform": {
+    "ig": {
+      "placement": "Placement",
+      "feed": "Feed",
+      "reels": "Reels",
+      "trialReel": "Trial Reel",
+      "trialReelDesc": "Publish as a trial reel with limited reach",
+      "captionOverride": "Instagram caption",
+      "captionPlaceholder": "Leave empty to use the general caption..."
+    },
+    "tt": {
+      "title": "TikTok title",
+      "titlePlaceholder": "Video title...",
+      "aigc": "AI-generated content",
+      "aigcDesc": "Mark this video as AI-generated content",
+      "draft": "Save as draft on TikTok",
+      "draftDesc": "The video will be saved as a draft on TikTok, not published directly",
+      "captionOverride": "TikTok caption",
+      "captionPlaceholder": "Leave empty to use the general caption..."
+    }
+  },
+  "drive": {
+    "title": "Google Drive",
+    "noCategories": "No categories found",
+    "noVideos": "No videos in this folder",
+    "useVideo": "Use this video",
+    "uploading": "Uploading...",
+    "uploaded": "Uploaded",
+    "mediaAttached": "Video from Drive attached",
+    "addFolder": "Add folder",
+    "folderIdPlaceholder": "Drive folder ID or URL...",
+    "addFolderError": "Invalid folder or no access"
+  },
+  "categories": {
+    "manage": "Categories",
+    "namePlaceholder": "Category name...",
+    "empty": "No categories yet. Create one to group your accounts.",
+    "noCategoriesYet": "No categories yet. Create them from the Accounts page.",
+    "quickSelect": "Quick select by category"
+  },
+  "bulk": {
+    "title": "Bulk Post Creation",
+    "stepVideos": "Videos",
+    "stepConfig": "Configure",
+    "stepSchedule": "Schedule",
+    "stepReview": "Review",
+    "tabDrive": "Google Drive",
+    "tabUpload": "Upload files",
+    "uploadSelected": "Upload {{count}} selected",
+    "accountMode_shared": "Same accounts for all",
+    "accountMode_individual": "Individual per post",
+    "platformConfig": "Platform configuration",
+    "postsList": "Posts list",
+    "schedule_now": "Publish now",
+    "schedule_interval": "Fixed interval",
+    "schedule_manual": "Manual per post",
+    "startTime": "Start date/time",
+    "interval": "Interval",
+    "preview": "Schedule preview",
+    "publishImmediately": "All posts will be published immediately",
+    "video": "Video",
+    "status": "Status",
+    "creating": "Creating...",
+    "createAll": "Create {{count}} posts",
+    "resultSummary": "{{success}} successful, {{error}} failed out of {{total}} posts",
+    "viewPosts": "View posts",
+    "prev": "Previous",
+    "next": "Next",
+    "videosSelected": "videos selected"
+  },
+  "shorts": {
+    "title": "Shorts Cutter",
+    "tabUpload": "Upload video",
+    "tabDrive": "Google Drive",
+    "dragOrClick": "Drag a video here or click to select",
+    "analyzing": "Analyzing video...",
+    "analyzingDesc": "Uploading and detecting video scenes",
+    "cuttingAuto": "Cutting clips...",
+    "cuttingAutoDesc": "Splitting video into clips and uploading to Media",
+    "doneMessage": "{{count}} clips generated and saved to Media",
+    "goToBulk": "Create {{count}} posts",
+    "postSingle": "Post",
+    "processAnother": "Process another video",
+    "uploadError": "Failed to upload video",
+    "cutError": "Failed to cut clips",
+    "tryAgain": "Try again",
+    "savedClips": "Saved clips",
+    "clearAll": "Clear all"
+  },
   "results": {
     "title": "Results",
     "viewOnPlatform": "View on platform",
-    "errorDetails": "Error details"
+    "errorDetails": "Error details",
+    "success": "Success",
+    "failed": "Failed",
+    "noResults": "No results available yet"
   }
 }
