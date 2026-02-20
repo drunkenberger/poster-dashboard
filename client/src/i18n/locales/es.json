@@ -172,6 +172,12 @@
     "savedClips": "Clips guardados",
     "clearAll": "Borrar todo"
   },
+  "auth": {
+    "prompt": "Ingresa la contrasena para continuar",
+    "placeholder": "Contrasena",
+    "submit": "Entrar",
+    "error": "Contrasena incorrecta"
+  },
   "results": {
     "title": "Resultados",
     "viewOnPlatform": "Ver en plataforma",

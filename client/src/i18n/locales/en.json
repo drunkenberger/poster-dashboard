@@ -172,6 +172,12 @@
     "savedClips": "Saved clips",
     "clearAll": "Clear all"
   },
+  "auth": {
+    "prompt": "Enter the password to continue",
+    "placeholder": "Password",
+    "submit": "Enter",
+    "error": "Incorrect password"
+  },
   "results": {
     "title": "Results",
     "viewOnPlatform": "View on platform",

@@ -56,3 +56,5 @@
 | shorts-cut-progress-048 | ShortsEditor | Indicadores de progreso de analisis/corte | ShortsEditor.tsx | 132 |
 | shorts-saved-clips-049 | SavedClips | Seccion de clips guardados persistentes | SavedClips.tsx | 98 |
 | drive-add-folder-050 | AddFolderInput | Boton para agregar carpeta de Drive custom | AddFolderInput.tsx | 28 |
+| gate-password-051 | PasswordGate | Input de contrasena del password gate | PasswordGate.tsx | 60 |
+| gate-submit-052 | PasswordGate | Boton submit del password gate | PasswordGate.tsx | 68 |
