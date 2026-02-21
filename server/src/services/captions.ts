@@ -21,57 +21,53 @@ export interface VideoCaption {
   title: string;
 }
 
-export async function generateCaptions(
-  categoryName: string,
-  videoNames: string[],
-): Promise<VideoCaption[]> {
-  const titles = videoNames.map(buildVideoTitle);
-  const empty: VideoCaption = { es: '', en: '', title: '' };
-
-  const res = await getClient().chat.completions.create({
-    model: 'gpt-4o-mini',
-    temperature: 0.8,
-    response_format: { type: 'json_object' },
-    messages: [
-      {
-        role: 'system',
-        content: `You are a viral social media copywriter for TikTok and Instagram Reels.
+const SYSTEM_PROMPT = `You are a viral social media copywriter for TikTok and Instagram Reels.
 Your job: write short, engaging captions that maximize views, shares, and engagement.
 
 Rules:
-- For EACH video, generate:
+- Generate:
   - "es": caption in Spanish (1-2 sentences + line break + 5-8 viral hashtags in Spanish)
   - "en": caption in English (1-2 sentences + line break + 5-8 viral hashtags in English)
   - "title": a short catchy title for TikTok (max 70 chars, in English, no hashtags)
-- Match the energy of the content category: "${categoryName}"
 - Use emojis naturally (2-4 per caption)
 - Hashtags must be SEO-optimized, mixing high-volume and niche tags
 - Never use generic filler — every word should hook the viewer
 - Keep captions under 200 characters (before hashtags)
+- Respond with JSON: { "es": "...", "en": "...", "title": "..." }`;
 
-Respond with JSON: { "captions": [{ "es": "...", "en": "...", "title": "..." }, ...] }
-Return exactly one object per video, in the same order.`,
-      },
-      {
-        role: 'user',
-        content: `Generate viral captions (ES + EN) and a TikTok title for each of these ${titles.length} videos:\n\n${titles.map((t, i) => `${i + 1}. ${t}`).join('\n')}`,
-      },
-    ],
-  });
+export async function generateSingleCaption(
+  videoName: string,
+  existingCaptions: string[],
+): Promise<VideoCaption> {
+  const empty: VideoCaption = { es: '', en: '', title: '' };
+  const title = buildVideoTitle(videoName);
 
-  const raw = res.choices[0]?.message?.content ?? '{}';
   try {
+    const userParts = [`Generate a unique viral caption (ES + EN) and TikTok title for this video: "${title}"`];
+    if (existingCaptions.length > 0) {
+      userParts.push(
+        `\nIMPORTANT: These captions were already used for this same video. You MUST write something completely different — different wording, different angle, different hashtags:\n${existingCaptions.map((c, i) => `${i + 1}. ${c}`).join('\n')}`,
+      );
+    }
+
+    const res = await getClient().chat.completions.create({
+      model: 'gpt-4o-mini',
+      temperature: 0.9,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: userParts.join('') },
+      ],
+    });
+
+    const raw = res.choices[0]?.message?.content ?? '{}';
     const parsed = JSON.parse(raw);
-    const captions: VideoCaption[] = Array.isArray(parsed.captions)
-      ? parsed.captions.map((c: Record<string, string>) => ({
-          es: c.es ?? '',
-          en: c.en ?? '',
-          title: c.title ?? '',
-        }))
-      : [];
-    while (captions.length < videoNames.length) captions.push(empty);
-    return captions.slice(0, videoNames.length);
+    return {
+      es: parsed.es ?? '',
+      en: parsed.en ?? '',
+      title: parsed.title ?? '',
+    };
   } catch {
-    return videoNames.map(() => empty);
+    return empty;
   }
 }

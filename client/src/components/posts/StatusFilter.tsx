@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import type { PostStatus } from '../../../../shared/types/index.ts';
 
-const STATUSES: PostStatus[] = ['draft', 'scheduled', 'processing', 'published', 'failed'];
+const API_STATUSES = ['scheduled', 'processing', 'posted'] as const;
+type ApiStatus = (typeof API_STATUSES)[number];
 
 interface StatusFilterProps {
-  selected: PostStatus | null;
-  onChange: (status: PostStatus | null) => void;
+  selected: string | null;
+  onChange: (status: string | null) => void;
 }
 
 export default function StatusFilter({ selected, onChange }: StatusFilterProps) {
@@ -24,7 +24,7 @@ export default function StatusFilter({ selected, onChange }: StatusFilterProps) 
         {t('common.all')}
       </button>
 
-      {STATUSES.map((status) => (
+      {API_STATUSES.map((status) => (
         <button
           key={status}
           onClick={() => onChange(status === selected ? null : status)}

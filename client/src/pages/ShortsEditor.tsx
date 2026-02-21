@@ -19,7 +19,7 @@ function formatTime(seconds: number): string {
 }
 
 export default function ShortsEditor() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const addBatch = useShortsStore((s) => s.addBatch);
 
@@ -43,9 +43,6 @@ export default function ShortsEditor() {
           start: c.start,
           end: c.end,
           duration: c.duration,
-          captionEs: c.captionEs || '',
-          captionEn: c.captionEn || '',
-          title: c.title || '',
         })),
       );
 
@@ -89,17 +86,13 @@ export default function ShortsEditor() {
       mediaId: c.mediaId,
       name: c.name,
       caption: '',
-      captionEs: c.captionEs,
-      captionEn: c.captionEn,
-      title: c.title,
     }));
     saveClipsForBulk(items);
     navigate('/bulk');
   };
 
   const goToCreate = (clip: AutoCutResult) => {
-    const caption = i18n.language === 'es' ? clip.captionEs : clip.captionEn;
-    navigate(`/create?media=${clip.mediaId}&caption=${encodeURIComponent(caption || clip.title)}`);
+    navigate(`/create?media=${clip.mediaId}`);
   };
 
   const reset = () => {
@@ -178,9 +171,6 @@ export default function ShortsEditor() {
                     <PenSquare size={12} /> {t('shorts.postSingle')}
                   </button>
                 </div>
-                {clip.title && (
-                  <p className="text-xs text-muted-foreground pl-7 truncate">{clip.title}</p>
-                )}
               </div>
             ))}
           </div>

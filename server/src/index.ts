@@ -13,6 +13,7 @@ import mediaRouter from './routes/media.js';
 import resultsRouter from './routes/results.js';
 import driveRouter from './routes/drive.js';
 import videosRouter from './routes/videos.js';
+import captionsRouter from './routes/captions.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -32,6 +33,7 @@ app.use('/api/media', mediaRouter);
 app.use('/api/results', resultsRouter);
 app.use('/api/drive', driveRouter);
 app.use('/api/videos', videosRouter);
+app.use('/api/captions', captionsRouter);
 
 app.use(errorHandler);
 

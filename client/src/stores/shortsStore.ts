@@ -8,9 +8,6 @@ export interface SavedClip {
   start: number;
   end: number;
   duration: number;
-  captionEs: string;
-  captionEn: string;
-  title: string;
 }
 
 export interface ClipBatch {

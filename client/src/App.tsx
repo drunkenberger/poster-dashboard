@@ -11,6 +11,7 @@ import SettingsPage from './pages/SettingsPage.tsx'
 import DriveVideoBrowser from './pages/DriveVideoBrowser.tsx'
 import BulkCreate from './pages/BulkCreate.tsx'
 import ShortsEditor from './pages/ShortsEditor.tsx'
+import AutoSchedule from './pages/AutoSchedule.tsx'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/drive" element={<DriveVideoBrowser />} />
           <Route path="/bulk" element={<BulkCreate />} />
           <Route path="/shorts" element={<ShortsEditor />} />
+          <Route path="/auto-schedule" element={<AutoSchedule />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Routes>

@@ -133,9 +133,6 @@ export interface DriveVideo {
   size: number;
   thumbnailLink?: string;
   createdTime?: string;
-  captionEs?: string;
-  captionEn?: string;
-  title?: string;
 }
 
 export interface AccountCategory {
@@ -151,9 +148,6 @@ export interface BulkPostItem {
   name: string;
   thumbnail?: string;
   caption: string;
-  captionEs?: string;
-  captionEn?: string;
-  title?: string;
   accounts?: number[];
   scheduledAt?: string;
 }

@@ -42,12 +42,8 @@ export default function DriveVideoBrowser() {
     [customFolders],
   );
 
-  const handleUploaded = (mediaId: string, captionEs: string, captionEn: string, title: string) => {
-    const params = new URLSearchParams({ media: mediaId });
-    if (captionEs) params.set('captionEs', captionEs);
-    if (captionEn) params.set('captionEn', captionEn);
-    if (title) params.set('title', title);
-    navigate(`/create?${params.toString()}`);
+  const handleUploaded = (mediaId: string) => {
+    navigate(`/create?media=${mediaId}`);
   };
 
   return (

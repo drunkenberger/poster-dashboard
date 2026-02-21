@@ -58,3 +58,11 @@
 | drive-add-folder-050 | AddFolderInput | Boton para agregar carpeta de Drive custom | AddFolderInput.tsx | 28 |
 | gate-password-051 | PasswordGate | Input de contrasena del password gate | PasswordGate.tsx | 60 |
 | gate-submit-052 | PasswordGate | Boton submit del password gate | PasswordGate.tsx | 68 |
+| auto-schedule-folder-053 | AutoSchedule | Seccion selector de carpeta Drive | AutoSchedule.tsx | 83 |
+| auto-schedule-accounts-054 | AutoSchedule | Seccion selector de cuentas | AutoSchedule.tsx | 97 |
+| auto-schedule-start-time-055 | AutoSchedule | Input fecha/hora inicio | AutoSchedule.tsx | 103 |
+| auto-schedule-min-interval-056 | AutoSchedule | Input intervalo minimo en minutos | AutoSchedule.tsx | 112 |
+| auto-schedule-max-interval-057 | AutoSchedule | Input intervalo maximo en minutos | AutoSchedule.tsx | 121 |
+| auto-schedule-start-btn-058 | AutoSchedule | Boton programar todos los videos | AutoSchedule.tsx | 130 |
+| auto-schedule-progress-059 | AutoScheduleProgress | Contenedor de progreso por video | AutoScheduleProgress.tsx | 68 |
+| auto-schedule-view-posts-060 | AutoSchedule | Boton ver posts programados | AutoSchedule.tsx | 147 |

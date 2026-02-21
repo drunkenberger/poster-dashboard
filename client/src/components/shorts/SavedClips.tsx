@@ -21,13 +21,12 @@ function formatDate(iso: string): string {
 }
 
 function BatchCard({ batch }: { batch: ClipBatch }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { removeBatch, removeClip } = useShortsStore();
 
   const goToCreate = (clip: typeof batch.clips[0]) => {
-    const caption = i18n.language === 'es' ? clip.captionEs : clip.captionEn;
-    navigate(`/create?media=${clip.mediaId}&caption=${encodeURIComponent(caption || clip.title)}`);
+    navigate(`/create?media=${clip.mediaId}`);
   };
 
   const goToBulk = () => {
@@ -36,9 +35,6 @@ function BatchCard({ batch }: { batch: ClipBatch }) {
       mediaId: c.mediaId,
       name: c.name,
       caption: '',
-      captionEs: c.captionEs,
-      captionEn: c.captionEn,
-      title: c.title,
     }));
     saveClipsForBulk(items);
     navigate('/bulk');
@@ -71,9 +67,6 @@ function BatchCard({ batch }: { batch: ClipBatch }) {
               <span className="text-xs font-mono text-muted-foreground">
                 {formatTime(clip.start)}-{formatTime(clip.end)}
               </span>
-              {clip.title && (
-                <span className="text-xs text-muted-foreground truncate max-w-32">{clip.title}</span>
-              )}
             </div>
             <div className="flex items-center gap-1">
               <button

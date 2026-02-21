@@ -8,9 +8,6 @@ export interface AutoCutResult {
   start: number;
   end: number;
   duration: number;
-  captionEs: string;
-  captionEn: string;
-  title: string;
 }
 
 export async function uploadVideo(file: File): Promise<VideoAnalysis> {

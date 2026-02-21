@@ -176,15 +176,11 @@ function UploadTab({ items, onItemsChange }: BulkVideoSelectProps) {
 }
 
 function buildItemFromDrive(video: DriveVideo, mediaId: string): BulkPostItem {
-  const caption = [video.captionEs, video.captionEn].filter(Boolean).join('\n\n---\n\n');
   return {
     id: crypto.randomUUID(),
     mediaId,
     name: video.name,
     thumbnail: video.thumbnailLink,
-    caption,
-    captionEs: video.captionEs,
-    captionEn: video.captionEn,
-    title: video.title,
+    caption: '',
   };
 }

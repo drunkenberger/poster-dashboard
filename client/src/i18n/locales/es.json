@@ -22,7 +22,8 @@
     "drive": "Google Drive",
     "settings": "Ajustes",
     "bulkCreate": "Bulk Post",
-    "shorts": "Shorts Cutter"
+    "shorts": "Shorts Cutter",
+    "autoSchedule": "Auto Schedule"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -73,6 +74,7 @@
       "scheduled": "Programado",
       "processing": "Procesando",
       "published": "Publicado",
+      "posted": "Publicado",
       "failed": "Fallido"
     }
   },
@@ -171,6 +173,23 @@
     "tryAgain": "Intentar de nuevo",
     "savedClips": "Clips guardados",
     "clearAll": "Borrar todo"
+  },
+  "autoSchedule": {
+    "title": "Auto Schedule",
+    "selectFolder": "Seleccionar carpeta de Drive",
+    "videosInFolder": "{{count}} videos en {{folder}}",
+    "startTime": "Hora de inicio",
+    "minInterval": "Intervalo min (min)",
+    "maxInterval": "Intervalo max (min)",
+    "startBtn": "Programar {{count}} posts",
+    "progressTitle": "Progreso",
+    "uploadingVideos": "Subiendo videos... {{done}}/{{total}} ({{failed}} fallidos)",
+    "creatingPosts": "Creando posts... {{done}}/{{total}}",
+    "resultSummary": "{{success}} exitosos, {{error}} fallidos de {{total}} posts",
+    "uploadsFailed": "{{count}} videos no se pudieron subir (no se crearon posts para esos videos)",
+    "errorsTitle": "{{count}} errores",
+    "viewPosts": "Ver posts",
+    "scheduleMore": "Programar mas"
   },
   "auth": {
     "prompt": "Ingresa la contrasena para continuar",

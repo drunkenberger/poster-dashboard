@@ -1,17 +1,12 @@
 import { Router } from 'express';
 import { listCategories, listVideos, getFileMetadata, getFileStream, getFolderInfo } from '../services/googleDrive.js';
-import { generateCaptions } from '../services/captions.js';
 import apiClient from '../utils/apiClient.js';
-
-const categoryNameCache = new Map<string, string>();
 
 const router = Router();
 
 router.get('/categories', async (_req, res, next) => {
   try {
-    const categories = await listCategories();
-    categories.forEach((c) => categoryNameCache.set(c.id, c.name));
-    res.json(categories);
+    res.json(await listCategories());
   } catch (err) {
     next(err);
   }
@@ -19,27 +14,8 @@ router.get('/categories', async (_req, res, next) => {
 
 router.get('/categories/:id/videos', async (req, res, next) => {
   try {
-    const categoryId = req.params.id;
-    const categoryName = categoryNameCache.get(categoryId) ?? 'General';
-    const videos = await listVideos(categoryId);
-
-    if (videos.length === 0) {
-      res.json(videos);
-      return;
-    }
-
-    const captions = await generateCaptions(
-      categoryName,
-      videos.map((v) => v.name),
-    );
-
-    const videosWithCaptions = videos.map((v, i) => ({
-      ...v,
-      captionEs: captions[i]?.es ?? '',
-      captionEn: captions[i]?.en ?? '',
-      title: captions[i]?.title ?? '',
-    }));
-    res.json(videosWithCaptions);
+    const videos = await listVideos(req.params.id);
+    res.json(videos);
   } catch (err) {
     next(err);
   }
@@ -47,10 +23,8 @@ router.get('/categories/:id/videos', async (req, res, next) => {
 
 router.get('/folder-info/:folderId', async (req, res, next) => {
   try {
-    const info = await getFolderInfo(req.params.folderId);
-    categoryNameCache.set(info.id, info.name);
-    res.json(info);
-  } catch (err) {
+    res.json(await getFolderInfo(req.params.folderId));
+  } catch {
     res.status(400).json({ error: 'Invalid folder ID or not a folder' });
   }
 });

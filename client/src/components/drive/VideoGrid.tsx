@@ -6,7 +6,7 @@ import { driveService } from '../../services/drive.ts';
 
 interface VideoGridProps {
   videos: DriveVideo[];
-  onUploaded: (mediaId: string, captionEs: string, captionEn: string, title: string) => void;
+  onUploaded: (mediaId: string) => void;
 }
 
 function formatSize(bytes: number): string {
@@ -29,7 +29,7 @@ export default function VideoGrid({ videos, onUploaded }: VideoGridProps) {
     try {
       const { media_id } = await driveService.uploadFromDrive(video.id);
       setUploaded((prev) => new Set(prev).add(video.id));
-      onUploaded(media_id, video.captionEs ?? '', video.captionEn ?? '', video.title ?? '');
+      onUploaded(media_id);
     } catch {
       // error handled by api interceptor
     } finally {
@@ -62,23 +62,6 @@ export default function VideoGrid({ videos, onUploaded }: VideoGridProps) {
                 {video.name}
               </p>
               <p className="text-xs text-muted-foreground">{formatSize(video.size)}</p>
-
-              {video.title && (
-                <p className="text-xs font-medium text-primary truncate" title={video.title}>
-                  {video.title}
-                </p>
-              )}
-
-              {video.captionEs && (
-                <div className="text-xs text-muted-foreground space-y-1">
-                  <p className="line-clamp-2 whitespace-pre-line">
-                    <span className="font-medium text-foreground">ES:</span> {video.captionEs}
-                  </p>
-                  <p className="line-clamp-2 whitespace-pre-line">
-                    <span className="font-medium text-foreground">EN:</span> {video.captionEn}
-                  </p>
-                </div>
-              )}
 
               <button
                 onClick={() => handleUpload(video)}

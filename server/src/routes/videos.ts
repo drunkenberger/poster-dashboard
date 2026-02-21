@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url';
 import { pipeline } from 'stream/promises';
 import { analyzeVideo, mergeIntoClips, cutClip } from '../services/videoProcessor.js';
 import { getFileMetadata, getFileStream } from '../services/googleDrive.js';
-import { generateCaptions } from '../services/captions.js';
 import apiClient from '../utils/apiClient.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -148,7 +147,6 @@ router.post('/auto-cut', async (req, res, next) => {
     const clips = mergeIntoClips(analysis.scenes, clipDuration ?? 30);
 
     const results = [];
-    const clipNames: string[] = [];
     for (let i = 0; i < clips.length; i++) {
       const clip = clips[i];
       const clipPath = resolve(videoDir, `clip-${clip.id}.mp4`);
@@ -156,7 +154,6 @@ router.post('/auto-cut', async (req, res, next) => {
 
       const clipName = `clip-${String(i + 1).padStart(2, '0')}.mp4`;
       const { mediaId, name } = await uploadClipToPostBridge(clipPath, clipName);
-      clipNames.push(name);
 
       results.push({
         clipId: clip.id,
@@ -165,28 +162,10 @@ router.post('/auto-cut', async (req, res, next) => {
         start: clip.start,
         end: clip.end,
         duration: clip.duration,
-        captionEs: '',
-        captionEn: '',
-        title: '',
       });
     }
 
     await rm(videoDir, { recursive: true, force: true });
-
-    try {
-      const sourceName = analysis.filename || 'video';
-      const captions = await generateCaptions(sourceName, clipNames);
-      for (let i = 0; i < results.length; i++) {
-        if (captions[i]) {
-          results[i].captionEs = captions[i].es;
-          results[i].captionEn = captions[i].en;
-          results[i].title = captions[i].title;
-        }
-      }
-    } catch (err) {
-      console.error('[Captions] Failed to generate captions:', err);
-    }
-
     res.json({ total: clips.length, clips: results });
   } catch (err) {
     next(err);

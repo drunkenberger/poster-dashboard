@@ -30,16 +30,8 @@ export default function CreatePost() {
   useEffect(() => {
     const mediaParam = searchParams.get('media');
     if (mediaParam) setDriveMediaIds(mediaParam.split(','));
-    const es = searchParams.get('captionEs') ?? '';
-    const en = searchParams.get('captionEn') ?? '';
-    const title = searchParams.get('title') ?? '';
-    if (es || en) setCaption([es, en].filter(Boolean).join('\n\n---\n\n'));
-    if (es || en || title) {
-      setPlatformConfig({
-        instagram: { caption: es || undefined, placement: 'reels' },
-        tiktok: { caption: en || undefined, title: title || undefined },
-      });
-    }
+    const captionParam = searchParams.get('caption');
+    if (captionParam) setCaption(captionParam);
   }, [searchParams]);
 
   const allMediaIds = [...driveMediaIds, ...mediaIds];
