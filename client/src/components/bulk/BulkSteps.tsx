@@ -6,7 +6,7 @@ interface BulkStepsProps {
   total: number;
 }
 
-const STEP_KEYS = ['bulk.stepVideos', 'bulk.stepConfig', 'bulk.stepSchedule', 'bulk.stepReview'];
+const STEP_KEYS = ['bulk.stepContent', 'bulk.stepConfig', 'bulk.stepSchedule', 'bulk.stepReview'];
 
 export default function BulkSteps({ current, total }: BulkStepsProps) {
   const { t } = useTranslation();

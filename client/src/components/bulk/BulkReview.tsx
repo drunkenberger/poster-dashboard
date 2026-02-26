@@ -70,7 +70,7 @@ export default function BulkReview({ items, sharedAccounts, accountMode, platfor
         const dto: CreatePostDto = {
           caption: mainCaption,
           social_accounts: accounts,
-          media: [item.mediaId],
+          media: item.mediaIds ?? [item.mediaId],
           scheduled_at: item.scheduledAt ?? undefined,
           platform_configurations: platformConfig,
           account_configurations: accountConfigs,

@@ -12,6 +12,8 @@ import DriveVideoBrowser from './pages/DriveVideoBrowser.tsx'
 import BulkCreate from './pages/BulkCreate.tsx'
 import ShortsEditor from './pages/ShortsEditor.tsx'
 import AutoSchedule from './pages/AutoSchedule.tsx'
+import CarouselCreator from './pages/CarouselCreator.tsx'
+import BulkCarouselCreator from './pages/BulkCarouselCreator.tsx'
 
 export default function App() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
           <Route path="/bulk" element={<BulkCreate />} />
           <Route path="/shorts" element={<ShortsEditor />} />
           <Route path="/auto-schedule" element={<AutoSchedule />} />
+          <Route path="/carousel" element={<CarouselCreator />} />
+          <Route path="/carousel-series" element={<BulkCarouselCreator />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Routes>

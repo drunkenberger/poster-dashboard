@@ -76,7 +76,7 @@ export default function BulkCreate() {
             <ArrowLeft size={16} /> {t('bulk.prev')}
           </button>
           <span className="text-xs text-muted-foreground">
-            {items.length} {t('bulk.videosSelected')}
+            {items.length} {t('bulk.itemsSelected')}
           </span>
           <button
             onClick={() => setStep((s) => s + 1)}

@@ -66,3 +66,31 @@
 | auto-schedule-start-btn-058 | AutoSchedule | Boton programar todos los videos | AutoSchedule.tsx | 130 |
 | auto-schedule-progress-059 | AutoScheduleProgress | Contenedor de progreso por video | AutoScheduleProgress.tsx | 68 |
 | auto-schedule-view-posts-060 | AutoSchedule | Boton ver posts programados | AutoSchedule.tsx | 147 |
+| carousel-topic-input-061 | TopicInput | Input del tema del carrusel | TopicInput.tsx | 30 |
+| carousel-slide-count-062 | TopicInput | Selector numero de slides | TopicInput.tsx | 42 |
+| carousel-lang-toggle-063 | TopicInput | Toggle idioma es/en | TopicInput.tsx | 56 |
+| carousel-generate-btn-064 | TopicInput | Boton generar textos | TopicInput.tsx | 74 |
+| carousel-text-editor-065 | SlideTextEditor | Contenedor editor de textos | SlideTextEditor.tsx | 16 |
+| carousel-approve-texts-066 | SlideTextEditor | Boton aprobar textos | SlideTextEditor.tsx | 68 |
+| carousel-image-grid-067 | SlideImageReview | Grid de imagenes generadas | SlideImageReview.tsx | 26 |
+| carousel-approve-images-068 | SlideImageReview | Boton aprobar imagenes | SlideImageReview.tsx | 77 |
+| carousel-style-presets-069 | StylePresets | Grid de presets de estilo | StylePresets.tsx | 80 |
+| carousel-style-controls-070 | StyleControls | Panel de controles de estilo | StyleControls.tsx | 35 |
+| carousel-canvas-preview-071 | SlideCanvas | Preview canvas del slide | SlideCanvas.tsx | 37 |
+| carousel-slide-nav-072 | SlideStyleEditor | Navegacion entre slides | SlideStyleEditor.tsx | 46 |
+| carousel-publish-btn-073 | CarouselPublish | Boton publicar carrusel | CarouselPublish.tsx | 99 |
+| carousel-caption-074 | CarouselPublish | Input caption del carrusel | CarouselPublish.tsx | 84 |
+| carousel-drive-picker-075 | DriveFolderPicker | Selector de carpeta Drive para guardar | DriveFolderPicker.tsx | 45 |
+| series-carousel-tabs-076 | CarouselTabs | Tabs de seleccion de carrusel en serie | CarouselTabs.tsx | 12 |
+| series-topic-input-077 | SeriesTopicInput | Input del tema de la serie | SeriesTopicInput.tsx | 30 |
+| series-count-078 | SeriesTopicInput | Input cantidad de carruseles | SeriesTopicInput.tsx | 47 |
+| series-slides-079 | SeriesTopicInput | Input slides por carrusel | SeriesTopicInput.tsx | 57 |
+| series-generate-btn-080 | SeriesTopicInput | Boton generar toda la serie | SeriesTopicInput.tsx | 78 |
+| series-text-editor-081 | SeriesTextEditor | Contenedor editor de textos por carrusel | SeriesTextEditor.tsx | 17 |
+| series-image-review-082 | SeriesImageReview | Grid de imagenes con progreso global | SeriesImageReview.tsx | 23 |
+| series-style-editor-083 | SeriesStyleEditor | Editor de estilos con tabs de carrusel | SeriesStyleEditor.tsx | 27 |
+| series-publish-btn-084 | SeriesPublish | Boton publicar toda la serie | SeriesPublish.tsx | 88 |
+| auto-schedule-mode-085 | AutoSchedule | Toggle modo videos/carruseles | AutoSchedule.tsx | 169 |
+| carousel-save-btn-086 | CarouselPublish | Boton guardar carrusel en Drive sin publicar | CarouselPublish.tsx | 117 |
+| series-save-btn-087 | SeriesPublish | Boton guardar serie en Drive sin publicar | SeriesPublish.tsx | 114 |
+| bulk-upload-carousels-088 | BulkCarouselSelect | Boton subir carruseles seleccionados en bulk | BulkCarouselSelect.tsx | 143 |

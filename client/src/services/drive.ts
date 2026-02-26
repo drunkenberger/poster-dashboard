@@ -21,4 +21,24 @@ export const driveService = {
     const { data } = await api.post('/drive/upload', { fileId });
     return data;
   },
+
+  async getSubfolders(folderId: string): Promise<DriveCategory[]> {
+    const { data } = await api.get(`/drive/${folderId}/subfolders`);
+    return data;
+  },
+
+  async findCarouselFolders(folderId: string): Promise<{ id: string; name: string; path: string }[]> {
+    const { data } = await api.get(`/drive/${folderId}/carousel-folders`);
+    return data;
+  },
+
+  async listImages(folderId: string): Promise<{ id: string; name: string; mimeType: string; size: number }[]> {
+    const { data } = await api.get(`/drive/${folderId}/images`);
+    return data;
+  },
+
+  async getCaption(folderId: string): Promise<string> {
+    const { data } = await api.get(`/drive/${folderId}/caption`);
+    return data.caption;
+  },
 };

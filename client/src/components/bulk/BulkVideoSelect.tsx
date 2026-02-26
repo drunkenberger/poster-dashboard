@@ -1,15 +1,16 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Upload, FolderOpen, ArrowLeft, Loader2, CheckSquare, Square } from 'lucide-react';
+import { Upload, FolderOpen, Images, ArrowLeft, Loader2, CheckSquare, Square } from 'lucide-react';
 import { useDriveStore } from '../../stores/driveStore.ts';
 import { useCustomFoldersStore } from '../../stores/customFoldersStore.ts';
 import { driveService } from '../../services/drive.ts';
 import { useMediaUpload } from '../../hooks/useMediaUpload.ts';
 import CategoryGrid from '../drive/CategoryGrid.tsx';
 import MediaUploader from '../media/MediaUploader.tsx';
+import BulkCarouselSelect from './BulkCarouselSelect.tsx';
 import type { BulkPostItem, DriveVideo } from '../../../../shared/types/index.ts';
 
-type Tab = 'drive' | 'upload';
+type Tab = 'drive' | 'upload' | 'carousels';
 
 interface BulkVideoSelectProps {
   items: BulkPostItem[];
@@ -25,12 +26,11 @@ export default function BulkVideoSelect({ items, onItemsChange }: BulkVideoSelec
       <div className="flex gap-2 border-b border-border">
         <TabBtn active={tab === 'drive'} onClick={() => setTab('drive')} icon={<FolderOpen size={16} />} label={t('bulk.tabDrive')} />
         <TabBtn active={tab === 'upload'} onClick={() => setTab('upload')} icon={<Upload size={16} />} label={t('bulk.tabUpload')} />
+        <TabBtn active={tab === 'carousels'} onClick={() => setTab('carousels')} icon={<Images size={16} />} label={t('bulk.tabCarousels')} />
       </div>
-      {tab === 'drive' ? (
-        <DriveTab items={items} onItemsChange={onItemsChange} />
-      ) : (
-        <UploadTab items={items} onItemsChange={onItemsChange} />
-      )}
+      {tab === 'drive' && <DriveTab items={items} onItemsChange={onItemsChange} />}
+      {tab === 'upload' && <UploadTab items={items} onItemsChange={onItemsChange} />}
+      {tab === 'carousels' && <BulkCarouselSelect items={items} onItemsChange={onItemsChange} />}
     </div>
   );
 }

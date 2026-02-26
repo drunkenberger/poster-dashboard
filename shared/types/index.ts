@@ -145,6 +145,7 @@ export interface AccountCategory {
 export interface BulkPostItem {
   id: string;
   mediaId: string;
+  mediaIds?: string[];
   name: string;
   thumbnail?: string;
   caption: string;

@@ -1,5 +1,8 @@
 import { Router } from 'express';
-import { listCategories, listVideos, getFileMetadata, getFileStream, getFolderInfo } from '../services/googleDrive.js';
+import {
+  listCategories, listVideos, listImages, findCarouselFolders,
+  getFileMetadata, getFileStream, getFolderInfo, readTextFileFromFolder,
+} from '../services/googleDrive.js';
 import apiClient from '../utils/apiClient.js';
 
 const router = Router();
@@ -29,6 +32,49 @@ router.get('/folder-info/:folderId', async (req, res, next) => {
   }
 });
 
+router.get('/:folderId/subfolders', async (req, res, next) => {
+  try {
+    res.json(await listCategories(req.params.folderId));
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:folderId/carousel-folders', async (req, res, next) => {
+  try {
+    res.json(await findCarouselFolders(req.params.folderId));
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:folderId/images', async (req, res, next) => {
+  try {
+    res.json(await listImages(req.params.folderId));
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:folderId/caption', async (req, res, next) => {
+  try {
+    const text = await readTextFileFromFolder(req.params.folderId, 'caption.txt');
+    res.json({ caption: text ?? '' });
+  } catch (err) {
+    next(err);
+  }
+});
+
+const SUPPORTED_MIMES: Record<string, string> = {
+  'video/mp4': 'video/mp4',
+  'video/quicktime': 'video/quicktime',
+  'video/x-matroska': 'video/mp4',
+  'video/webm': 'video/mp4',
+  'image/png': 'image/png',
+  'image/jpeg': 'image/jpeg',
+  'image/webp': 'image/webp',
+};
+
 router.post('/upload', async (req, res, next) => {
   try {
     const { fileId } = req.body;
@@ -38,7 +84,7 @@ router.post('/upload', async (req, res, next) => {
     }
 
     const meta = await getFileMetadata(fileId);
-    const mimeType = meta.mimeType === 'video/quicktime' ? 'video/quicktime' : 'video/mp4';
+    const mimeType = SUPPORTED_MIMES[meta.mimeType] ?? 'video/mp4';
 
     const { data: uploadData } = await apiClient.post('/media/create-upload-url', {
       name: meta.name,

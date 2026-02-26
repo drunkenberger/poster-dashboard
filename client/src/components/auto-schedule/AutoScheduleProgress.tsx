@@ -5,9 +5,10 @@ import type { ScheduleProgress } from '../../utils/autoScheduleRunner.ts';
 
 interface Props {
   progress: ScheduleProgress;
+  carouselMode?: boolean;
 }
 
-export default function AutoScheduleProgress({ progress }: Props) {
+export default function AutoScheduleProgress({ progress, carouselMode }: Props) {
   const { t } = useTranslation();
   const [errorsOpen, setErrorsOpen] = useState(false);
   const { phase, videosUploaded, videosFailed, videosTotal, postsCreated, postsFailed, postsTotal, currentAccount, errors } = progress;
@@ -32,7 +33,7 @@ export default function AutoScheduleProgress({ progress }: Props) {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Upload size={16} className="text-blue-500" />
-            {t('autoSchedule.uploadingVideos', { done: videosUploaded, failed: videosFailed, total: videosTotal })}
+            {t(carouselMode ? 'autoSchedule.uploadingCarousels' : 'autoSchedule.uploadingVideos', { done: videosUploaded, failed: videosFailed, total: videosTotal })}
           </div>
         </div>
       )}
