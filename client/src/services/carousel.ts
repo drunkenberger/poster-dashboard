@@ -46,9 +46,10 @@ export const carouselService = {
     carouselIndex: number,
     slideNumber: number,
     prompt: string,
+    imageStyle?: string,
   ): Promise<GenerateImageResponse> {
     const { data } = await api.post('/carousel/generate-image', {
-      sessionId, slideNumber, prompt, carouselIndex,
+      sessionId, slideNumber, prompt, carouselIndex, imageStyle,
     });
     return data;
   },
@@ -71,8 +72,9 @@ export const carouselService = {
     sessionId: string,
     slideNumber: number,
     prompt: string,
+    imageStyle?: string,
   ): Promise<GenerateImageResponse> {
-    const { data } = await api.post('/carousel/generate-image', { sessionId, slideNumber, prompt });
+    const { data } = await api.post('/carousel/generate-image', { sessionId, slideNumber, prompt, imageStyle });
     return data;
   },
 

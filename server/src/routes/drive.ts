@@ -94,13 +94,20 @@ router.post('/upload', async (req, res, next) => {
 
     const stream = await getFileStream(fileId);
 
-    await fetch(uploadData.upload_url, {
+    const uploadRes = await fetch(uploadData.upload_url, {
       method: 'PUT',
       body: stream as unknown as BodyInit,
       headers: { 'Content-Type': mimeType },
       // @ts-expect-error Node fetch supports duplex for streaming
       duplex: 'half',
     });
+
+    if (!uploadRes.ok) {
+      const errBody = await uploadRes.text().catch(() => '');
+      console.error(`[Drive Upload] PUT to upload_url failed: ${uploadRes.status} — ${errBody}`);
+      res.status(502).json({ error: `Media upload failed: ${uploadRes.status}`, details: errBody });
+      return;
+    }
 
     res.json({ media_id: uploadData.media_id, name: meta.name });
   } catch (err) {

@@ -36,7 +36,7 @@ router.post('/generate-texts', async (req, res, next) => {
 
 router.post('/generate-image', async (req, res, next) => {
   try {
-    const { sessionId, slideNumber, prompt, carouselIndex } = req.body;
+    const { sessionId, slideNumber, prompt, carouselIndex, imageStyle } = req.body;
     if (!sessionId || !slideNumber || !prompt) {
       res.status(400).json({ error: 'sessionId, slideNumber, and prompt are required' });
       return;
@@ -45,6 +45,7 @@ router.post('/generate-image', async (req, res, next) => {
     const imageUrl = await generateSlideImage(
       sessionId, slideNumber, prompt,
       carouselIndex !== undefined ? Number(carouselIndex) : undefined,
+      imageStyle,
     );
     res.json({ imageUrl });
   } catch (err) {

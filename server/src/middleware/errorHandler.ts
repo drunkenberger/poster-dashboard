@@ -11,6 +11,7 @@ export function errorHandler(err: Error, _req: Request, res: Response, _next: Ne
   if (err instanceof AxiosError) {
     const status = err.response?.status ?? 502;
     const data = err.response?.data;
+    console.error(`[PostBridge Error] ${err.config?.method?.toUpperCase()} ${err.config?.url} → ${status}`, JSON.stringify(data, null, 2));
     res.status(status).json({
       error: data?.message ?? err.message,
       details: data,

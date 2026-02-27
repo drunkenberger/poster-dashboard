@@ -25,7 +25,8 @@
     "shorts": "Shorts Cutter",
     "autoSchedule": "Auto Schedule",
     "carousel": "Carousel",
-    "carouselSeries": "Carousel Series"
+    "carouselSeries": "Carousel Series",
+    "analytics": "Analytics"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -272,7 +273,18 @@
     "handwrittenPreset": "Handwritten",
     "newCarousel": "New carousel",
     "saveSuccess": "Carousel saved to Google Drive!",
-    "saveError": "Failed to save to Google Drive"
+    "saveError": "Failed to save to Google Drive",
+    "imageStyle": "Image style",
+    "style_photorealistic": "Photorealistic",
+    "style_3d-render": "3D Render",
+    "style_watercolor": "Watercolor",
+    "style_abstract": "Abstract",
+    "style_cartoon": "Cartoon",
+    "style_anime": "Anime",
+    "style_neon": "Neon",
+    "style_minimalist": "Minimalist",
+    "style_vintage": "Vintage",
+    "style_oil-painting": "Oil Painting"
   },
   "bulkCarousel": {
     "title": "Carousel Series",
@@ -293,5 +305,22 @@
     "success": "Success",
     "failed": "Failed",
     "noResults": "No results available yet"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "views": "Views",
+    "likes": "Likes",
+    "comments": "Comments",
+    "shares": "Shares",
+    "post": "Post",
+    "date": "Date",
+    "noData": "No analytics data. Sync your TikTok accounts to get metrics.",
+    "sync": "Sync TikTok",
+    "syncRateLimit": "Too many sync requests. Try again in a few minutes.",
+    "syncError": "Failed to sync analytics",
+    "tf_7d": "7 days",
+    "tf_30d": "30 days",
+    "tf_90d": "90 days",
+    "tf_all": "All"
   }
 }

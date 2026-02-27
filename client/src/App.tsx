@@ -14,6 +14,7 @@ import ShortsEditor from './pages/ShortsEditor.tsx'
 import AutoSchedule from './pages/AutoSchedule.tsx'
 import CarouselCreator from './pages/CarouselCreator.tsx'
 import BulkCarouselCreator from './pages/BulkCarouselCreator.tsx'
+import Analytics from './pages/Analytics.tsx'
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/auto-schedule" element={<AutoSchedule />} />
           <Route path="/carousel" element={<CarouselCreator />} />
           <Route path="/carousel-series" element={<BulkCarouselCreator />} />
+          <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Routes>

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader2, Sparkles } from 'lucide-react';
+import ImageStylePicker, { type ImageStyleId } from './ImageStylePicker.tsx';
 
 interface TopicInputProps {
-  onGenerate: (topic: string, slideCount: number, language: 'es' | 'en') => void;
+  onGenerate: (topic: string, slideCount: number, language: 'es' | 'en', imageStyle: ImageStyleId) => void;
   generating: boolean;
 }
 
@@ -14,6 +15,7 @@ export default function TopicInput({ onGenerate, generating }: TopicInputProps) 
   const [language, setLanguage] = useState<'es' | 'en'>(
     i18n.language.startsWith('es') ? 'es' : 'en',
   );
+  const [imageStyle, setImageStyle] = useState<ImageStyleId>('photorealistic');
 
   const canGenerate = topic.trim().length > 0 && !generating;
 
@@ -77,9 +79,11 @@ export default function TopicInput({ onGenerate, generating }: TopicInputProps) 
         </div>
       </div>
 
+      <ImageStylePicker selected={imageStyle} onChange={setImageStyle} />
+
       <button
         id="carousel-generate-btn-064"
-        onClick={() => canGenerate && onGenerate(topic, slideCount, language)}
+        onClick={() => canGenerate && onGenerate(topic, slideCount, language, imageStyle)}
         disabled={!canGenerate}
         className="flex items-center justify-center gap-2 w-full px-4 py-2.5 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
       >

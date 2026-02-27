@@ -21,14 +21,29 @@ function getSessionDir(sessionId: string): string {
   return dir;
 }
 
+const STYLE_PROMPTS: Record<string, string> = {
+  'photorealistic': 'Hyper-realistic photography, DSLR quality, detailed textures, natural lighting, photojournalistic style.',
+  '3d-render': 'Modern 3D render, cinema 4D quality, volumetric lighting, glossy reflective surfaces, studio lighting.',
+  'watercolor': 'Delicate watercolor painting, soft fluid textures, artistic color blending, paper texture visible.',
+  'abstract': 'Bold abstract art, geometric shapes, vibrant colors, modern art composition, Kandinsky inspired.',
+  'cartoon': 'Colorful cartoon illustration, playful fun style, bold outlines, vibrant saturated colors.',
+  'anime': 'Anime illustration style, vibrant colors, detailed atmospheric backgrounds, Studio Ghibli quality.',
+  'neon': 'Dark cyberpunk aesthetic, neon glow effects, futuristic city, electric vivid colors on dark background.',
+  'minimalist': 'Ultra minimalist design, simple geometric shapes, pastel soft palette, lots of negative space, clean.',
+  'vintage': 'Retro vintage aesthetics, film grain texture, warm muted sepia tones, nostalgic 70s feel.',
+  'oil-painting': 'Classical oil painting, rich impasto textures, dramatic chiaroscuro lighting, fine art museum quality.',
+};
+
 export async function generateSlideImage(
   sessionId: string,
   slideNumber: number,
   prompt: string,
   carouselIndex?: number,
+  imageStyle?: string,
 ): Promise<string> {
+  const styleHint = STYLE_PROMPTS[imageStyle ?? 'photorealistic'] ?? STYLE_PROMPTS['photorealistic'];
   const enhancedPrompt =
-    'Create a visually stunning, atmospheric background image for a social media carousel slide. ' +
+    `Create a background image for a social media carousel slide. Art style: ${styleHint} ` +
     'NO text, NO letters, NO words, NO writing in the image. ' +
     prompt;
 

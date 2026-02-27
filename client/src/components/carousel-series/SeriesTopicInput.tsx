@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader2, ArrowRight } from 'lucide-react';
+import ImageStylePicker, { type ImageStyleId } from '../carousel/ImageStylePicker.tsx';
 
 interface SeriesTopicInputProps {
-  onGenerate: (topic: string, count: number, slides: number, lang: 'es' | 'en') => void;
+  onGenerate: (topic: string, count: number, slides: number, lang: 'es' | 'en', imageStyle: ImageStyleId) => void;
   generating: boolean;
 }
 
@@ -13,6 +14,7 @@ export default function SeriesTopicInput({ onGenerate, generating }: SeriesTopic
   const [count, setCount] = useState(3);
   const [slides, setSlides] = useState(5);
   const [lang, setLang] = useState<'es' | 'en'>('es');
+  const [imageStyle, setImageStyle] = useState<ImageStyleId>('photorealistic');
 
   const valid = topic.trim().length > 0 && !generating;
 
@@ -79,9 +81,11 @@ export default function SeriesTopicInput({ onGenerate, generating }: SeriesTopic
         </div>
       </div>
 
+      <ImageStylePicker selected={imageStyle} onChange={setImageStyle} />
+
       <button
         id="series-generate-btn-080"
-        onClick={() => valid && onGenerate(topic.trim(), count, slides, lang)}
+        onClick={() => valid && onGenerate(topic.trim(), count, slides, lang, imageStyle)}
         disabled={!valid}
         className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
       >

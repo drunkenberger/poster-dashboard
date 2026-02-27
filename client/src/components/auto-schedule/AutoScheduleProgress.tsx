@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader2, Check, Upload, CalendarClock, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
 import type { ScheduleProgress } from '../../utils/autoScheduleRunner.ts';
@@ -11,6 +11,10 @@ interface Props {
 export default function AutoScheduleProgress({ progress, carouselMode }: Props) {
   const { t } = useTranslation();
   const [errorsOpen, setErrorsOpen] = useState(false);
+
+  useEffect(() => {
+    if (progress.phase === 'done' && progress.errors.length > 0) setErrorsOpen(true);
+  }, [progress.phase, progress.errors.length]);
   const { phase, videosUploaded, videosFailed, videosTotal, postsCreated, postsFailed, postsTotal, currentAccount, errors } = progress;
 
   const attempted = postsCreated + postsFailed;

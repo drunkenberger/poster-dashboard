@@ -25,7 +25,8 @@
     "shorts": "Shorts Cutter",
     "autoSchedule": "Auto Schedule",
     "carousel": "Carrusel",
-    "carouselSeries": "Serie Carrusel"
+    "carouselSeries": "Serie Carrusel",
+    "analytics": "Analytics"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -272,7 +273,18 @@
     "handwrittenPreset": "Manuscrito",
     "newCarousel": "Nuevo carrusel",
     "saveSuccess": "Carrusel guardado en Google Drive!",
-    "saveError": "Error al guardar en Google Drive"
+    "saveError": "Error al guardar en Google Drive",
+    "imageStyle": "Estilo de imagen",
+    "style_photorealistic": "Fotorealista",
+    "style_3d-render": "Render 3D",
+    "style_watercolor": "Acuarela",
+    "style_abstract": "Abstracto",
+    "style_cartoon": "Caricatura",
+    "style_anime": "Anime",
+    "style_neon": "Neon",
+    "style_minimalist": "Minimalista",
+    "style_vintage": "Vintage",
+    "style_oil-painting": "Oleo"
   },
   "bulkCarousel": {
     "title": "Serie de Carruseles",
@@ -293,5 +305,22 @@
     "success": "Exitoso",
     "failed": "Fallido",
     "noResults": "No hay resultados disponibles aun"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "views": "Vistas",
+    "likes": "Likes",
+    "comments": "Comentarios",
+    "shares": "Compartidos",
+    "post": "Post",
+    "date": "Fecha",
+    "noData": "No hay datos de analytics. Sincroniza tus cuentas de TikTok para obtener metricas.",
+    "sync": "Sincronizar TikTok",
+    "syncRateLimit": "Demasiadas sincronizaciones. Intenta de nuevo en unos minutos.",
+    "syncError": "Error al sincronizar analytics",
+    "tf_7d": "7 dias",
+    "tf_30d": "30 dias",
+    "tf_90d": "90 dias",
+    "tf_all": "Todo"
   }
 }

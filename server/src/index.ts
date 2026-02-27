@@ -15,6 +15,7 @@ import driveRouter from './routes/drive.js';
 import videosRouter from './routes/videos.js';
 import captionsRouter from './routes/captions.js';
 import carouselRouter from './routes/carousel.js';
+import analyticsRouter from './routes/analytics.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/drive', driveRouter);
 app.use('/api/videos', videosRouter);
 app.use('/api/captions', captionsRouter);
 app.use('/api/carousel', carouselRouter);
+app.use('/api/analytics', analyticsRouter);
 
 app.use(errorHandler);
 

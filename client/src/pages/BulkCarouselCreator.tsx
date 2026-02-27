@@ -29,12 +29,14 @@ export default function BulkCarouselCreator() {
   const [imgTotal, setImgTotal] = useState(0);
   const [language, setLanguage] = useState<'es' | 'en'>('es');
   const [topic, setTopic] = useState('');
+  const [imageStyle, setImageStyle] = useState('photorealistic');
 
   const handleGenerate = useCallback(
-    async (inputTopic: string, count: number, slides: number, lang: 'es' | 'en') => {
+    async (inputTopic: string, count: number, slides: number, lang: 'es' | 'en', style: string) => {
       setGenerating(true);
       setLanguage(lang);
       setTopic(inputTopic);
+      setImageStyle(style);
       try {
         const { sessionId, carousels } = await carouselService.generateSeriesTexts(inputTopic, count, slides, lang);
         store.setSession(
@@ -73,14 +75,14 @@ export default function BulkCarouselCreator() {
     for (const { ci, sn, prompt } of allSlides) {
       setSlideLoading(ci, sn, true);
       try {
-        const { imageUrl } = await carouselService.generateSeriesImage(useBulkCarouselStore.getState().sessionId, ci, sn, prompt);
+        const { imageUrl } = await carouselService.generateSeriesImage(useBulkCarouselStore.getState().sessionId, ci, sn, prompt, imageStyle);
         updateSlideImage(ci, sn, imageUrl);
       } catch {
         setSlideLoading(ci, sn, false);
       }
       setImgDone((prev) => prev + 1);
     }
-  }, []);
+  }, [imageStyle]);
 
   const handleRegenerate = useCallback(async (ci: number, sn: number) => {
     const { sessionId, carousels, setSlideLoading, updateSlideImage } = useBulkCarouselStore.getState();
@@ -89,12 +91,12 @@ export default function BulkCarouselCreator() {
 
     setSlideLoading(ci, sn, true);
     try {
-      const { imageUrl } = await carouselService.generateSeriesImage(sessionId, ci, sn, slide.imagePrompt);
+      const { imageUrl } = await carouselService.generateSeriesImage(sessionId, ci, sn, slide.imagePrompt, imageStyle);
       updateSlideImage(ci, sn, imageUrl);
     } catch {
       setSlideLoading(ci, sn, false);
     }
-  }, []);
+  }, [imageStyle]);
 
   const stepIdx = STEPS.findIndex((s) => s.key === phase);
 

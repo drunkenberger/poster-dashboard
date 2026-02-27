@@ -94,3 +94,8 @@
 | carousel-save-btn-086 | CarouselPublish | Boton guardar carrusel en Drive sin publicar | CarouselPublish.tsx | 117 |
 | series-save-btn-087 | SeriesPublish | Boton guardar serie en Drive sin publicar | SeriesPublish.tsx | 114 |
 | bulk-upload-carousels-088 | BulkCarouselSelect | Boton subir carruseles seleccionados en bulk | BulkCarouselSelect.tsx | 143 |
+| carousel-style-picker-089 | ImageStylePicker | Grid selector de estilo de imagen para carruseles | ImageStylePicker.tsx | 36 |
+| analytics-stats-090 | AnalyticsStats | Cards de metricas totales (views, likes, comments, shares) | AnalyticsStats.tsx | 31 |
+| analytics-table-091 | AnalyticsTable | Tabla de analytics por post | AnalyticsTable.tsx | 35 |
+| analytics-sync-btn-092 | Analytics | Boton sincronizar analytics de TikTok | Analytics.tsx | 55 |
+| analytics-timeframe-093 | Analytics | Toggle filtro de timeframe (7d/30d/90d/all) | Analytics.tsx | 66 |

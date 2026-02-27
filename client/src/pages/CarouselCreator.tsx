@@ -27,12 +27,14 @@ export default function CarouselCreator() {
   const [imgDone, setImgDone] = useState(0);
   const [language, setLanguage] = useState<'es' | 'en'>('es');
   const [topic, setTopic] = useState('');
+  const [imageStyle, setImageStyle] = useState('photorealistic');
 
   const handleGenerate = useCallback(
-    async (inputTopic: string, slideCount: number, lang: 'es' | 'en') => {
+    async (inputTopic: string, slideCount: number, lang: 'es' | 'en', style: string) => {
       setGenerating(true);
       setLanguage(lang);
       setTopic(inputTopic);
+      setImageStyle(style);
       try {
         const { sessionId, slides } = await carouselService.generateTexts(
           inputTopic, slideCount, lang,
@@ -66,7 +68,7 @@ export default function CarouselCreator() {
       setSlideLoading(slide.slideNumber, true);
       try {
         const { imageUrl } = await carouselService.generateImage(
-          sessionId, slide.slideNumber, slide.imagePrompt,
+          sessionId, slide.slideNumber, slide.imagePrompt, imageStyle,
         );
         updateSlideImage(slide.slideNumber, imageUrl);
       } catch {
@@ -74,7 +76,7 @@ export default function CarouselCreator() {
       }
       setImgDone((prev) => prev + 1);
     }
-  }, []);
+  }, [imageStyle]);
 
   const handleRegenerate = useCallback(async (slideNumber: number) => {
     const { sessionId, slides, setSlideLoading, updateSlideImage } = useCarouselStore.getState();
@@ -84,13 +86,13 @@ export default function CarouselCreator() {
     setSlideLoading(slideNumber, true);
     try {
       const { imageUrl } = await carouselService.generateImage(
-        sessionId, slideNumber, slide.imagePrompt,
+        sessionId, slideNumber, slide.imagePrompt, imageStyle,
       );
       updateSlideImage(slideNumber, imageUrl);
     } catch {
       setSlideLoading(slideNumber, false);
     }
-  }, []);
+  }, [imageStyle]);
 
   const stepIdx = STEPS.findIndex((s) => s.key === phase);
 
