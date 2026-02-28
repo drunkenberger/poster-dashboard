@@ -99,3 +99,7 @@
 | analytics-table-091 | AnalyticsTable | Tabla de analytics por post | AnalyticsTable.tsx | 35 |
 | analytics-sync-btn-092 | Analytics | Boton sincronizar analytics de TikTok | Analytics.tsx | 55 |
 | analytics-timeframe-093 | Analytics | Toggle filtro de timeframe (7d/30d/90d/all) | Analytics.tsx | 66 |
+| account-stats-no-posts | AccountPostStats | Mensaje cuando la cuenta no tiene posts | AccountPostStats.tsx | 20 |
+| analytics-account-filter-094 | AllPostsTable | Filtro por cuenta en tabla de posts | AllPostsTable.tsx | 43 |
+| analytics-posts-table-095 | AllPostsTable | Tabla de todos los posts | AllPostsTable.tsx | 76 |
+| analytics-tabs-096 | Analytics | Tabs de navegacion (Resumen/Posts/TikTok) | Analytics.tsx | 83 |

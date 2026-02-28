@@ -2,7 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, RefreshCw, Tags } from 'lucide-react';
 import { useAccountsStore } from '../stores/accountsStore.ts';
-import type { Platform } from '../../../shared/types/index.ts';
+import type { Platform, Post } from '../../../shared/types/index.ts';
+import { postsService } from '../services/posts.ts';
+import type { AccountStats } from '../components/accounts/AccountPostStats.tsx';
 import AccountCard from '../components/accounts/AccountCard.tsx';
 import PlatformFilter from '../components/accounts/PlatformFilter.tsx';
 import CategoryFilter from '../components/categories/CategoryFilter.tsx';
@@ -13,6 +15,22 @@ import ErrorMessage from '../components/ui/ErrorMessage.tsx';
 
 const POSTBRIDGE_DASHBOARD = 'https://post-bridge.com/dashboard';
 
+function buildStatsMap(posts: Post[]): Record<number, AccountStats> {
+  const map: Record<number, AccountStats> = {};
+  for (const post of posts) {
+    for (const accountId of post.social_accounts) {
+      if (!map[accountId]) {
+        map[accountId] = { total: 0, published: 0, scheduled: 0, failed: 0 };
+      }
+      map[accountId].total++;
+      if (post.status === 'published') map[accountId].published++;
+      else if (post.status === 'scheduled') map[accountId].scheduled++;
+      else if (post.status === 'failed') map[accountId].failed++;
+    }
+  }
+  return map;
+}
+
 export default function Accounts() {
   const { t } = useTranslation();
   const {
@@ -21,9 +39,13 @@ export default function Accounts() {
   } = useAccountsStore();
 
   const [managerOpen, setManagerOpen] = useState(false);
+  const [statsMap, setStatsMap] = useState<Record<number, AccountStats>>({});
 
   useEffect(() => {
     fetchAccounts();
+    postsService.getAllUnpaginated().then((posts) => {
+      setStatsMap(buildStatsMap(posts));
+    }).catch(() => {});
   }, [fetchAccounts]);
 
   const availablePlatforms = useMemo(() => {
@@ -90,7 +112,7 @@ export default function Accounts() {
       {!loading && !error && displayed.length > 0 && (
         <div className="grid gap-3">
           {displayed.map((account) => (
-            <AccountCard key={account.id} account={account} />
+            <AccountCard key={account.id} account={account} stats={statsMap[account.id]} />
           ))}
         </div>
       )}

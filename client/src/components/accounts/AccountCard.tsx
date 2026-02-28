@@ -6,12 +6,14 @@ import PlatformBadge from '../ui/PlatformBadge.tsx';
 import PlatformIcon from '../ui/PlatformIcon.tsx';
 import CategoryBadge from '../categories/CategoryBadge.tsx';
 import AccountCategoryPicker from '../categories/AccountCategoryPicker.tsx';
+import AccountPostStats, { type AccountStats } from './AccountPostStats.tsx';
 
 interface AccountCardProps {
   account: SocialAccount;
+  stats?: AccountStats;
 }
 
-export default function AccountCard({ account }: AccountCardProps) {
+export default function AccountCard({ account, stats }: AccountCardProps) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const { getCategoriesForAccount, removeAccount } = useCategoriesStore();
   const assigned = getCategoriesForAccount(account.id);
@@ -38,6 +40,11 @@ export default function AccountCard({ account }: AccountCardProps) {
               />
             ))}
           </div>
+          {stats && (
+            <div className="mt-1.5">
+              <AccountPostStats stats={stats} />
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2">

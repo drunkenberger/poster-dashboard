@@ -43,7 +43,9 @@
     "noAccounts": "No connected accounts",
     "connectInfo": "Connect your accounts from the Post Bridge panel",
     "connect": "Connect account",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "totalPosts": "posts",
+    "noPosts": "No posts yet"
   },
   "posts": {
     "title": "Posts",
@@ -314,6 +316,11 @@
     "shares": "Shares",
     "post": "Post",
     "date": "Date",
+    "tabOverview": "Overview",
+    "tabPosts": "Posts",
+    "tabTikTok": "TikTok",
+    "totalPosts": "posts",
+    "accountsTitle": "Accounts",
     "noData": "No analytics data. Sync your TikTok accounts to get metrics.",
     "sync": "Sync TikTok",
     "syncRateLimit": "Too many sync requests. Try again in a few minutes.",

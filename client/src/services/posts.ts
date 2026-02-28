@@ -14,6 +14,22 @@ export const postsService = {
     return data;
   },
 
+  async getAllUnpaginated(filters?: Omit<PostFilters, 'limit' | 'offset'>): Promise<Post[]> {
+    const limit = 50;
+    let offset = 0;
+    let all: Post[] = [];
+
+    while (true) {
+      const { data } = await api.get('/posts', { params: { ...filters, limit, offset } });
+      const page: PaginatedResponse<Post> = data;
+      all = all.concat(page.data);
+      if (!page.meta.next || all.length >= page.meta.total) break;
+      offset += limit;
+    }
+
+    return all;
+  },
+
   async getById(id: string): Promise<Post> {
     const { data } = await api.get(`/posts/${id}`);
     return data;
